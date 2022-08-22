@@ -9,14 +9,13 @@ class Player():
 #Game board
 class Game_board():
     def __init__(self):
-        self.game_board =["1","2","3","4","5","6","7","8","9"]
+        self.game_board =["-","-","-","-","-","-","-","-","-"]
 
 #Display board
     def print_board(self):
-        print("       1 2 3")
-        print("     A|{A1}|{A2}|{A3}|".format(A1=self.game_board[0], A2=self.game_board[1], A3=self.game_board[2]))
-        print("     B|{B1}|{B2}|{B3}|".format(B1=self.game_board[3], B2=self.game_board[4], B3=self.game_board[5]))
-        print("     C|{C1}|{C2}|{C3}|".format(C1=self.game_board[6], C2=self.game_board[7], C3=self.game_board[8]))
+        print("     |{A1}|{A2}|{A3}|".format(A1=self.game_board[0], A2=self.game_board[1], A3=self.game_board[2]))
+        print("     |{B1}|{B2}|{B3}|".format(B1=self.game_board[3], B2=self.game_board[4], B3=self.game_board[5]))
+        print("     |{C1}|{C2}|{C3}|".format(C1=self.game_board[6], C2=self.game_board[7], C3=self.game_board[8]))
         print("")
 
 #Check if Position is filled
@@ -66,24 +65,35 @@ class Game_board():
 
 
 #--------Runtime-------------------------------
-turn_counter = 0
-
 print("\nWelcome to Tic Tac Toe!")
 print("=======================")
 
 game = Game_board()
 
-# player1_name = input("What is your name? \n")
-# player1 = Player(player1_name, "X")
+player1_name = input("What is your name? \n")
+player1 = Player(player1_name, "X")
 
-# player2_name = input("What is your opponenet's name? \n")
-# player2 = Player(player2_name, "X")
+player2_name = input("What is your opponenet's name? \n")
+player2 = Player(player2_name, "O")
 
-# while player1.winnner != True and player2.winnner != True:
 while True:
     game.print_board()
-    game.add_shape("X")
-    game.print_board()
+    game.add_shape(player1.shape)
+    if game.check_win(player1.shape) == True:
+        print("===================")
+        print(str(player1.name) + " wins")
+        break
+    else:
+        game.print_board()
+        game.add_shape(player2.shape)
+        if game.check_win(player2.shape) == True:
+            print("===================")
+            print(str(player2.name) + " wins")
+            break
+
+game.print_board()
+print("GG")
+
 
 
 
